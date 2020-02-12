@@ -1,0 +1,65 @@
+body {
+  font-family: 'Arial';
+}
+.page {
+    display: flex;
+    position:absolute; 
+    top:0; left:0; right:0; bottom:0; 
+    margin:auto;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.content-wrapper{
+  display: flex;
+  border: 1px outset;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.lists-wrapper { 
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px;
+}
+
+.todos-wrapper {
+  display: inline-block;
+  vertical-align: top;
+  border: 1px outset;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: lightgrey;
+}
+.hidden {
+  display: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 300px;
+}
+li {
+  clear: both;
+}
+li button {
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  color: red;
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: inherit;
+}
+li a{
+  text-decoration: none;
+}
+
+li a:active{
+  font-weight: bold;
+}
+
+
