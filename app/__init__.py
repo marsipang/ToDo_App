@@ -20,6 +20,41 @@ def get_list_todos(list_id):
                          lists=ToDoList.query.all(),
                          data=ToDo.query.filter_by(list_id=list_id).order_by('id').all(),
                          active_list=ToDoList.query.get(list_id))
+  
+@app.route('/lists/create', methods=['POST'])
+def create_list():
+    error = False
+    body = {}
+    try:
+        listname = request.get_json()['listname']
+        listobj = ToDoList(name=listname)
+        db.session.add(listobj)
+        db.session.commit()
+        body['listname'] = listobj.name
+        body['listid'] = listobj.id
+    except:
+        db.session.rollback()
+        error=True
+#        print(sys.exc_info())
+    finally:
+        db.session.close()
+    if error:
+        abort(400)
+    else:
+        return jsonify(body)
+
+@app.route('/lists/<list_id>/remove-list', methods=['DELETE'])
+def remove_list(list_id):
+    try:
+        ToDoList.query.filter_by(id=list_id).delete()
+        db.session.commit()
+        result = {'success': True}
+    except:
+        db.session.rollback()
+        result = {'success': False}
+    finally:
+        db.session.close()
+    return jsonify(result)
 
 @app.route('/todos/create', methods=['POST'])
 def create_todo():

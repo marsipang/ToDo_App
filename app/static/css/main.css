@@ -22,6 +22,7 @@ body {
   display: inline-block;
   vertical-align: top;
   padding: 10px;
+  color: gray;
 }
 
 .todos-wrapper {
@@ -56,10 +57,25 @@ li button {
 }
 li a{
   text-decoration: none;
+  color: inherit;
 }
 
-li a:active{
-  font-weight: bold;
+.add-data {
+  color: green;
+  cursor: pointer;
+  float: right;
 }
 
+h2 {
+  float: left;
+}
 
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.error, .list-error {
+  color: red;
+}
