@@ -1,5 +1,6 @@
 body {
   font-family: 'Arial';
+  background-color: lightgreen;
 }
 .page {
     display: flex;
@@ -16,6 +17,7 @@ body {
   border: 1px outset;
   border-radius: 5px;
   padding: 10px;
+  background-color: white;
 }
 
 .lists-wrapper { 
