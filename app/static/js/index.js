@@ -138,3 +138,21 @@ for (let i = 0; i < deletes.length; i++){
         })
     }
 }
+//Filter data shown as search is filled out
+const searchform = document.getElementById('search-input');
+searchform.onkeyup = function() {
+    var input, filter, ul, li, i, txtValue;
+    input = searchform;
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("todos");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        console.log(li[i])
+        txtValue = li[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
