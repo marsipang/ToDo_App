@@ -156,3 +156,22 @@ searchform.onkeyup = function() {
         }
     }
 }
+//Checkmark all or uncheck all when link is clicked
+const CheckAllButton = document.getElementById('check-all');
+CheckAllButton.onclick = function(e) {
+    console.log(checkboxes.checked);
+    for (let i = 0; i < checkboxes.length; i++){
+        const checkbox = checkboxes[i]
+        checkbox.checked = true;
+    }
+    fetch('/lists/' + url.split('/').pop() + '/set-completed', {
+        method: 'POST'
+    })
+    .then(function() {
+        console.log()
+        document.getElementById('error').className = 'hidden';
+    })
+    .catch(function() {
+        document.getElementById('error').className = '';
+    })
+}

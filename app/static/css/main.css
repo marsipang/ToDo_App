@@ -32,6 +32,7 @@ body {
   border-radius: 5px;
   padding: 10px;
   background-color: lightgrey;
+  position: relative;
 }
 .hidden {
   display: none;
@@ -86,4 +87,15 @@ form input[type="text"]{
 
 form input[type="search"]{
   width: 100%;
+}
+
+#check-all {
+  position: absolute;
+  overflow: hidden;
+  bottom: 10px;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  color: blue;
 }

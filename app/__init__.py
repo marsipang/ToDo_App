@@ -105,3 +105,16 @@ def remove_todo(todo_id):
     finally:
         db.session.close()
     return jsonify(result)
+
+@app.route('/lists/<list_id>/set-completed', methods=['POST'])
+def set_completed_list(list_id):
+    try:
+        ToDo.query.filter_by(list_id=list_id).update({'completed': True}) 
+        db.session.commit()
+        result = {'success': True}
+    except:
+        db.session.rollback()
+        result = {'success': False}
+    finally:
+        db.session.close()
+    return jsonify(result)
