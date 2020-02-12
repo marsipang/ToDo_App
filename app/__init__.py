@@ -62,7 +62,8 @@ def create_todo():
     body = {}
     try:
         description = request.get_json()['description']
-        todo = ToDo(description=description)
+        list_id = request.get_json()['list_id']
+        todo = ToDo(description=description, list_id=list_id)
         db.session.add(todo)
         db.session.commit()
         body['description'] = todo.description
@@ -84,19 +85,23 @@ def set_completed_todo(todo_id):
         todo = ToDo.query.get(todo_id)
         todo.completed = completed
         db.session.commit()
+        result = {'success': True}
     except:
         db.session.rollback()
+        result = {'success': False}
     finally:
         db.session.close()
-    return redirect(url_for('index'))
+    return jsonify(result)
 
 @app.route('/todos/<todo_id>/remove-item', methods=['DELETE'])
 def remove_todo(todo_id):
     try:
         ToDo.query.filter_by(id=todo_id).delete()
         db.session.commit()
+        result = {'success': True}
     except:
         db.session.rollback()
+        result = {'success': False}
     finally:
         db.session.close()
-    return jsonify({ 'success': True })
+    return jsonify(result)
